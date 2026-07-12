@@ -28,35 +28,21 @@ export function FlowersPage() {
 
   const handleCategoriesWheel = (event: WheelEvent<HTMLDivElement>) => {
     if (!categoriesRef.current) return
-    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-      return
-    }
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return
     event.preventDefault()
     categoriesRef.current.scrollLeft += event.deltaY
   }
 
-  const scrollCategories = (offsetX: number) => {
-    if (!categoriesRef.current) return
-    categoriesRef.current.scrollBy({ left: offsetX, behavior: 'smooth' })
-  }
+  const scrollCategories = (offsetX: number) => { if (!categoriesRef.current) return; categoriesRef.current.scrollBy({ left: offsetX, behavior: 'smooth' }) }
 
   const updateCategoryArrows = useCallback(() => {
-    if (!categoriesRef.current) {
-      setShowCategoryArrows(false)
-      return
-    }
+    if (!categoriesRef.current) { setShowCategoryArrows(false); return }
     setShowCategoryArrows(categoriesRef.current.scrollWidth > categoriesRef.current.clientWidth + 1)
   }, [])
 
-  useEffect(() => {
-    fetchCategories().then(setCategories).catch(() => {})
-  }, [])
+  useEffect(() => { fetchCategories().then(setCategories).catch(() => {}) }, [])
 
-  useEffect(() => {
-    updateCategoryArrows()
-    window.addEventListener('resize', updateCategoryArrows)
-    return () => window.removeEventListener('resize', updateCategoryArrows)
-  }, [categories, updateCategoryArrows])
+  useEffect(() => { updateCategoryArrows(); window.addEventListener('resize', updateCategoryArrows); return () => window.removeEventListener('resize', updateCategoryArrows) }, [categories, updateCategoryArrows])
 
   const loadFlowers = useCallback(async (reset = false) => {
     if (reset) { setLoading(true); setOffset(0); setHasMore(true) } else { setLoadingMore(true) }
@@ -82,55 +68,55 @@ export function FlowersPage() {
 
   return (
     <div className="pt-20 sm:pt-24">
-      <section className="section-pad pb-8 bg-ivory-200">
+      <section className="section-pad pb-8 bg-cream-200">
         <div className="container-narrow text-center">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-forest-700 mb-3" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>{t('catalogueTitle')}</motion.h1>
-          <p className="text-forest-500 font-sans text-sm md:text-base">{t('catalogueSubtitle')}</p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="font-serif text-espresso-900 mb-3" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>{t('catalogueTitle')}</motion.h1>
+          <p className="text-espresso-500 font-sans text-sm md:text-base">{t('catalogueSubtitle')}</p>
         </div>
       </section>
 
-      <section className="sticky top-16 sm:top-20 z-30 bg-ivory-200/95 backdrop-blur-md border-y border-forest-100 py-4 overflow-x-hidden">
+      <section className="sticky top-16 sm:top-20 z-30 bg-cream-200/95 backdrop-blur-md border-y border-brand-100 py-4 overflow-x-hidden">
         <div className="container-narrow px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2 w-full">
               {showCategoryArrows && (
-                <button type="button" onClick={() => scrollCategories(-240)} className="hidden lg:inline-flex items-center justify-center w-10 h-10 rounded-full bg-ivory-50 border border-forest-200 text-forest-700 hover:bg-forest-100 transition-colors">
+                <button type="button" onClick={() => scrollCategories(-240)} className="hidden lg:inline-flex items-center justify-center w-10 h-10 rounded-full bg-cream-50 border border-brand-200 text-brand-700 hover:bg-brand-100 transition-colors">
                   <ChevronLeftIcon size={20} />
                 </button>
               )}
               <div ref={categoriesRef} onWheel={handleCategoriesWheel} className="flex flex-nowrap gap-2 overflow-x-auto pb-2 flex-1 min-w-0 scroll-smooth snap-x snap-mandatory scrollbar-hide">
-                <button onClick={() => setCategory('all')} className={`snap-start px-4 py-2 rounded-full font-sans text-sm tracking-wide transition-all duration-300 shrink-0 ${activeCategory === 'all' ? 'bg-forest-600 text-ivory-200' : 'bg-ivory-50 text-forest-600 hover:bg-forest-100'}`}>{t('filterAll')}</button>
-                {categories.map(cat => <button key={cat.id} onClick={() => setCategory(cat.slug)} className={`snap-start px-4 py-2 rounded-full font-sans text-sm tracking-wide transition-all duration-300 shrink-0 ${activeCategory === cat.slug ? 'bg-forest-600 text-ivory-200' : 'bg-ivory-50 text-forest-600 hover:bg-forest-100'}`}>{getCategoryName(cat, lang)}</button>)}
+                <button onClick={() => setCategory('all')} className={`snap-start px-4 py-2 rounded-full font-sans text-sm font-medium tracking-wide transition-all duration-300 shrink-0 ${activeCategory === 'all' ? 'bg-brand-600 text-cream-50' : 'bg-cream-50 text-brand-600 hover:bg-brand-100'}`}>{t('filterAll')}</button>
+                {categories.map(cat => <button key={cat.id} onClick={() => setCategory(cat.slug)} className={`snap-start px-4 py-2 rounded-full font-sans text-sm font-medium tracking-wide transition-all duration-300 shrink-0 ${activeCategory === cat.slug ? 'bg-brand-600 text-cream-50' : 'bg-cream-50 text-brand-600 hover:bg-brand-100'}`}>{getCategoryName(cat, lang)}</button>)}
               </div>
               {showCategoryArrows && (
-                <button type="button" onClick={() => scrollCategories(240)} className="hidden lg:inline-flex items-center justify-center w-10 h-10 rounded-full bg-ivory-50 border border-forest-200 text-forest-700 hover:bg-forest-100 transition-colors">
+                <button type="button" onClick={() => scrollCategories(240)} className="hidden lg:inline-flex items-center justify-center w-10 h-10 rounded-full bg-cream-50 border border-brand-200 text-brand-700 hover:bg-brand-100 transition-colors">
                   <ChevronRightIcon size={20} />
                 </button>
               )}
             </div>
             <div className="flex items-center gap-2 w-full sm:w-auto">
-              <span className="text-forest-400 text-xs tracking-wide hidden sm:inline">{t('sortBy')}:</span>
-              <select value={sort} onChange={(e) => setSort(e.target.value as 'newest' | 'liked')} className="px-3 py-2 rounded-full bg-ivory-50 border border-forest-200 text-forest-700 font-sans text-sm focus:outline-none focus:border-forest-500 flex-1 sm:flex-none"><option value="newest">{t('sortNewest')}</option><option value="liked">{t('sortMostLiked')}</option></select>
+              <span className="text-espresso-400 text-xs tracking-wide hidden sm:inline">{t('sortBy')}:</span>
+              <select value={sort} onChange={(e) => setSort(e.target.value as 'newest' | 'liked')} className="px-3 py-2 rounded-full bg-cream-50 border border-brand-200 text-espresso-900 font-sans text-sm focus:outline-none focus:border-brand-500 flex-1 sm:flex-none"><option value="newest">{t('sortNewest')}</option><option value="liked">{t('sortMostLiked')}</option></select>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-pad bg-ivory-200">
+      <section className="section-pad bg-cream-200">
         <div className="container-narrow">
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">{[...Array(8)].map((_, i) => (<div key={i} className="card"><div className="aspect-[4/5] skeleton" /><div className="p-4"><div className="h-5 w-3/4 skeleton rounded mb-2" /><div className="h-4 w-1/3 skeleton rounded" /></div></div>))}</div>
           ) : flowers.length === 0 ? (
-            <EmptyState title={t('noFlowersTitle')} message={t('noFlowersText')} />
+            <EmptyState title={t('noProductsTitle')} message={t('noProductsText')} />
           ) : (
             <AnimatePresence mode="popLayout">
               <motion.div key={`${activeCategory}-${sort}`} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">{flowers.map((flower, i) => <FlowerCard key={flower.id} flower={flower} index={i} />)}</motion.div>
             </AnimatePresence>
           )}
           <div ref={sentinelRef} className="h-20 flex items-center justify-center mt-8">
-            {loadingMore && <div className="flex gap-2">{[...Array(3)].map((_, i) => <motion.div key={i} animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} className="w-2 h-2 rounded-full bg-forest-400" />)}</div>}
+            {loadingMore && <div className="flex gap-2">{[...Array(3)].map((_, i) => <motion.div key={i} animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }} className="w-2 h-2 rounded-full bg-brand-400" />)}</div>}
           </div>
-          {!loading && flowers.length > 0 && <div className="mt-12 text-forest-300"><VineDivider className="w-full max-w-xs mx-auto" /></div>}
+          {!loading && flowers.length > 0 && <div className="mt-12 text-brand-300"><VineDivider className="w-full max-w-xs mx-auto" /></div>}
         </div>
       </section>
     </div>

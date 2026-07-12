@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext'
 import { useUI } from '../../context/UIContext'
 import { fetchFlowers, deleteFlower, fetchCategories } from '../../lib/data'
 import { getFlowerName, getCategoryName, formatPrice, getPrimaryFlowerImage } from '../../lib/utils'
-import { SearchIcon, EditIcon, EyeIcon, TrashIcon, PlusIcon, FlowerIcon, HeartIcon } from '../../components/icons'
+import { SearchIcon, EditIcon, EyeIcon, TrashIcon, PlusIcon, ProductIcon, HeartIcon } from '../../components/icons'
 import { EmptyState } from '../../components/EmptyState'
 import type { Flower, Category } from '../../lib/types'
 
@@ -25,8 +25,8 @@ export function AdminFlowers() {
   }, [])
 
   const handleDelete = async (flower: Flower) => {
-    if (!confirm(t('confirmDeleteFlower'))) return
-    try { await deleteFlower(flower.id); setFlowers(prev => prev.filter(f => f.id !== flower.id)); showToast(t('flowerDeleted')) } catch { showToast(t('errorLoading'), 'error') }
+    if (!confirm(t('confirmDeleteProduct'))) return
+    try { await deleteFlower(flower.id); setFlowers(prev => prev.filter(f => f.id !== flower.id)); showToast(t('productDeleted')) } catch { showToast(t('errorLoading'), 'error') }
   }
 
   const filtered = flowers.filter(f => {
@@ -37,9 +37,9 @@ export function AdminFlowers() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between flex-wrap gap-4"><h1 className="font-serif text-3xl text-forest-700">{t('manageFlowers')}</h1><Link to="/admin/flowers/new" className="btn-primary"><PlusIcon size={18} />{t('addFlower')}</Link></div>
+      <div className="flex items-center justify-between flex-wrap gap-4"><h1 className="font-sans text-3xl font-bold text-brand-800">{t('manageProducts')}</h1><Link to="/admin/flowers/new" className="btn-primary"><PlusIcon size={18} />{t('addProduct')}</Link></div>
       <div className="flex flex-wrap gap-3">
-        <div className="relative flex-1 min-w-[200px]"><SearchIcon size={18} className="absolute top-1/2 -translate-y-1/2 start-3 text-forest-400" /><input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('searchFlowers')} className="input-field ps-10" /></div>
+        <div className="relative flex-1 min-w-[200px]"><SearchIcon size={18} className="absolute top-1/2 -translate-y-1/2 start-3 text-espresso-400" /><input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('searchProducts')} className="input-field ps-10" /></div>
         <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} className="input-field w-auto"><option value="all">{t('filterAll')}</option><option value="none">{t('noCategory')}</option>{categories.map(c => <option key={c.id} value={c.slug}>{getCategoryName(c, lang)}</option>)}</select>
       </div>
       {loading ? (
@@ -51,13 +51,13 @@ export function AdminFlowers() {
           {filtered.map((flower, i) => (
             <motion.div key={flower.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03, duration: 0.3 }} className="card p-4">
               <div className="flex items-center gap-4 flex-wrap">
-                <div className="w-16 h-16 rounded-lg bg-forest-100 overflow-hidden shrink-0">{getPrimaryFlowerImage(flower.images)?.image_url ? <img src={getPrimaryFlowerImage(flower.images)?.image_url} alt="" className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-forest-300"><FlowerIcon size={20} /></div>}</div>
-                <div className="flex-1 min-w-[150px]"><p className="font-serif text-forest-700">{getFlowerName(flower, lang)}</p><p className="text-sm text-forest-400">{flower.category ? getCategoryName(flower.category, lang) : t('noCategory')} · {formatPrice(flower.price)}</p></div>
-                <div className="flex items-center gap-4 text-sm text-forest-500"><span className="flex items-center gap-1" title={t('statViews')}><EyeIcon size={16} /> {flower.view_count}</span><span className="flex items-center gap-1" title={t('statLikes')}><HeartIcon size={16} /> {flower.like_count}</span></div>
-                <span className={`text-xs px-2 py-1 rounded-full ${flower.hidden ? 'bg-forest-100 text-forest-500' : 'bg-gold-100 text-gold-600'}`}>{flower.hidden ? t('flowerHidden') : t('flowerVisible')}</span>
+                <div className="w-16 h-16 rounded-lg bg-brand-100 overflow-hidden shrink-0">{getPrimaryFlowerImage(flower.images)?.image_url ? <img src={getPrimaryFlowerImage(flower.images)?.image_url} alt="" className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-brand-300"><ProductIcon size={20} /></div>}</div>
+                <div className="flex-1 min-w-[150px]"><p className="font-sans font-medium text-brand-800">{getFlowerName(flower, lang)}</p><p className="text-sm text-espresso-400">{flower.category ? getCategoryName(flower.category, lang) : t('noCategory')} · {formatPrice(flower.price)}</p></div>
+                <div className="flex items-center gap-4 text-sm text-espresso-500"><span className="flex items-center gap-1" title={t('statViews')}><EyeIcon size={16} /> {flower.view_count}</span><span className="flex items-center gap-1" title={t('statLikes')}><HeartIcon size={16} /> {flower.like_count}</span></div>
+                <span className={`text-xs px-2 py-1 rounded-full ${flower.hidden ? 'bg-brand-100 text-brand-500' : 'bg-saffron-100 text-saffron-600'}`}>{flower.hidden ? t('productHidden') : t('productVisible')}</span>
                 <div className="flex items-center gap-2">
-                  <Link to={`/flower/${flower.slug}`} target="_blank" className="p-2 text-forest-500 hover:bg-forest-50 rounded-lg transition-colors" title={t('preview')}><EyeIcon size={18} /></Link>
-                  <Link to={`/admin/flowers/${flower.id}`} className="p-2 text-forest-500 hover:bg-forest-50 rounded-lg transition-colors" title={t('edit')}><EditIcon size={18} /></Link>
+                  <Link to={`/flower/${flower.slug}`} target="_blank" className="p-2 text-espresso-500 hover:bg-brand-50 rounded-lg transition-colors" title={t('preview')}><EyeIcon size={18} /></Link>
+                  <Link to={`/admin/flowers/${flower.id}`} className="p-2 text-espresso-500 hover:bg-brand-50 rounded-lg transition-colors" title={t('edit')}><EditIcon size={18} /></Link>
                   <button onClick={() => handleDelete(flower)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors" title={t('delete')}><TrashIcon size={18} /></button>
                 </div>
               </div>

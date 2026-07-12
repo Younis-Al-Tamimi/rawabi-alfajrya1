@@ -41,7 +41,7 @@ export function LikeButton({ count, liked, onToggle, size = 'md', variant = 'lig
     try { await onToggle() } catch { setOptimisticLiked(!newLiked); setOptimisticCount(prev => newLiked ? prev - 1 : prev + 1) }
   }
 
-  const colorClass = variant === 'light' ? (optimisticLiked ? 'text-gold-400' : 'text-ivory-200') : (optimisticLiked ? 'text-gold-500' : 'text-forest-500')
+  const colorClass = variant === 'light' ? (optimisticLiked ? 'text-saffron-400' : 'text-cream-50') : (optimisticLiked ? 'text-saffron-500' : 'text-brand-500')
 
   return (
     <button onClick={handleClick} className={`flex items-center gap-1.5 ${colorClass} transition-colors group`} aria-label={t('like')} aria-pressed={optimisticLiked}>

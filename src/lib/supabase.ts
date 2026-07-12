@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://rutsjhlnmkgrflvqddez.supabase.co'
-const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_vM1xs4NeXQgKIzi4_fbodQ_rGdqU17r'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://pysctkfvugetokzkloui.supabase.co'
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_zBj5m0ocJR6EaV1YkCE7KA_7fsQc5Js'
 
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
@@ -24,8 +24,10 @@ export async function getSupabaseAuthSettings() {
   }
 }
 
-export const ADMIN_EMAIL = 'admin@f9-flowers.com'
+export const BRAND_NAME_AR = 'روابي الفجرية'
+export const BRAND_NAME_EN = 'Rawabi Al Fajrya'
+export const ADMIN_EMAIL = 'admin@rawabi-alfajrya.com'
 export const WHATSAPP_NUMBER = '96877222686'
 export const WHATSAPP_DISPLAY = '+968 7722 2686'
-export const INSTAGRAM_HANDLE = 'F9.FLOWER'
-export const INSTAGRAM_URL = 'https://instagram.com/f9.flower'
+export const INSTAGRAM_HANDLE = 'rawabi.alfajrya'
+export const INSTAGRAM_URL = 'https://instagram.com/rawabi.alfajrya'

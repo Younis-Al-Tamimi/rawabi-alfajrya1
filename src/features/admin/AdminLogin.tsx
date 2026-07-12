@@ -41,24 +41,24 @@ export function AdminLogin() {
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); submitPasscode(passcode.join('')) }
 
   return (
-    <div className="min-h-screen bg-forest-700 flex items-center justify-center p-4" dir={dir}>
-      <div className="absolute inset-0 flex items-center justify-center opacity-5 text-ivory-200 pointer-events-none"><PeonyIllustration size={400} /></div>
+    <div className="min-h-screen bg-brand-800 flex items-center justify-center p-4" dir={dir}>
+      <div className="absolute inset-0 flex items-center justify-center opacity-5 text-cream-100 pointer-events-none"><PeonyIllustration size={400} /></div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} className="relative w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="text-ivory-200 flex justify-center mb-4"><LogoMark className="h-16 w-16" /></div>
-          <h1 className="font-serif text-2xl text-ivory-200 mb-2">{t('adminLogin')}</h1>
-          <p className="text-ivory-300/70 text-sm">{t('adminLoginSubtitle')}</p>
+          <div className="text-cream-100 flex justify-center mb-4"><LogoMark className="h-16 w-16" /></div>
+          <h1 className="font-sans text-2xl font-bold text-cream-100 mb-2">{t('adminLogin')}</h1>
+          <p className="text-cream-300/70 text-sm">{t('adminLoginSubtitle')}</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-center gap-3 mb-6">
             {passcode.map((digit, i) => (
-              <motion.input key={i} ref={(el) => { inputRefs.current[i] = el }} type="text" inputMode="numeric" maxLength={1} value={digit} onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKeyDown(i, e)} onPaste={handlePaste} disabled={loading} animate={error ? { x: [0, -8, 8, -8, 8, 0] } : {}} transition={{ duration: 0.4 }} className={`w-14 h-16 text-center font-serif text-2xl rounded-xl bg-forest-600/50 border-2 text-ivory-200 focus:outline-none transition-colors ${error ? 'border-red-400' : 'border-forest-500 focus:border-gold-400'}`} aria-label={`${t('adminPasscode')} ${i + 1}`} />
+              <motion.input key={i} ref={(el) => { inputRefs.current[i] = el }} type="text" inputMode="numeric" maxLength={1} value={digit} onChange={(e) => handleChange(i, e.target.value)} onKeyDown={(e) => handleKeyDown(i, e)} onPaste={handlePaste} disabled={loading} animate={error ? { x: [0, -8, 8, -8, 8, 0] } : {}} transition={{ duration: 0.4 }} className={`w-14 h-16 text-center font-serif text-2xl rounded-xl bg-brand-700/50 border-2 text-cream-100 focus:outline-none transition-colors ${error ? 'border-red-400' : 'border-brand-600 focus:border-saffron-400'}`} aria-label={`${t('adminPasscode')} ${i + 1}`} />
             ))}
           </div>
           {error && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-300 text-sm text-center mb-4">{t('adminLoginError')}</motion.p>}
-          <button type="submit" disabled={loading || passcode.some(d => !d)} className="w-full py-3 bg-gold-400 text-forest-800 font-sans text-sm tracking-wide rounded-full hover:bg-gold-500 hover:text-ivory-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">{loading ? '…' : t('signIn')}</button>
+          <button type="submit" disabled={loading || passcode.some(d => !d)} className="w-full py-3 bg-saffron-400 text-brand-900 font-sans text-sm font-semibold tracking-wide rounded-full hover:bg-saffron-500 hover:text-cream-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">{loading ? '…' : t('signIn')}</button>
         </form>
-        <p className="text-ivory-300/40 text-xs text-center mt-6">F9 Flowers Admin</p>
+        <p className="text-cream-300/40 text-xs text-center mt-6">Rawabi Al Fajrya Admin</p>
       </motion.div>
     </div>
   )

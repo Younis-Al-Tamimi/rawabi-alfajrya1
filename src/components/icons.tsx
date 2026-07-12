@@ -36,8 +36,8 @@ export function UserIcon({ className = '', size = 24 }: IconProps) {
 export function DashboardIcon({ className = '', size = 24 }: IconProps) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>
 }
-export function FlowerIcon({ className = '', size = 24 }: IconProps) {
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="8" r="3" /><path d="M12 2C10.5 2 9.5 3 9.5 4.5C9.5 5 9.7 5.5 10 6C9 5.8 8 6.5 7.5 7.5C7 8.5 7.3 9.8 8 10.5C7 10.5 6 11.2 5.5 12.2C5 13.2 5.3 14.5 6 15.2" /><path d="M12 2C13.5 2 14.5 3 14.5 4.5C14.5 5 14.3 5.5 14 6C15 5.8 16 6.5 16.5 7.5C17 8.5 16.7 9.8 16 10.5C17 10.5 18 11.2 18.5 12.2C19 13.2 18.7 14.5 18 15.2" /><path d="M12 11v10" /><path d="M12 16c-2-1-4 0-5 2" /><path d="M12 18c2-1 4 0 5 2" /></svg>
+export function ProductIcon({ className = '', size = 24 }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
 }
 export function CategoryIcon({ className = '', size = 24 }: IconProps) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 7h18M3 12h18M3 17h18" /></svg>
@@ -68,6 +68,18 @@ export function UploadIcon({ className = '', size = 24 }: IconProps) {
 }
 export function ArrowDownIcon({ className = '', size = 24 }: IconProps) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" /></svg>
+}
+export function StarIcon({ className = '', size = 24, filled = false }: IconProps & { filled?: boolean }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+}
+export function ShoppingBagIcon({ className = '', size = 24 }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+}
+export function SparkleIcon({ className = '', size = 24 }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z" /><path d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75z" /><path d="M5 14l.75 2.25L8 17l-2.25.75L5 20l-.75-2.25L2 17l2.25-.75z" /></svg>
+}
+export function LeafIcon({ className = '', size = 24 }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" /><path d="M2 21c0-3 1.85-5.36 5.08-6" /></svg>
 }
 export function PeonyIllustration({ className = '', size = 120 }: IconProps) {
   return <svg width={size} height={size} viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M60 30 C50 20 35 22 30 35 C25 48 35 55 48 50 C55 47 58 40 55 33" /><path d="M60 30 C70 20 85 22 90 35 C95 48 85 55 72 50 C65 47 62 40 65 33" /><path d="M60 30 C55 18 60 10 60 5 C65 10 65 18 60 30" /><path d="M60 30 C65 18 70 15 75 12 C72 20 68 25 60 30" /><path d="M60 30 C55 18 50 15 45 12 C48 20 52 25 60 30" /><circle cx="60" cy="35" r="4" /><path d="M60 40 L60 100" /><path d="M60 60 C50 55 42 58 38 65" /><path d="M60 75 C70 70 78 73 82 80" /><path d="M60 90 C52 88 48 92 46 98" /></svg>

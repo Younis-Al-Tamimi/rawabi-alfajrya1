@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext'
 import { formatPrice, getFlowerName, getPrimaryFlowerImage } from '../lib/utils'
 import { toggleFlowerLike, hasUserLikedFlower } from '../lib/data'
 import { LikeButton } from './LikeButton'
-import { HeartIcon } from './icons'
+import { ProductIcon, HeartIcon } from './icons'
 import type { Flower } from '../lib/types'
 
 export function FlowerCard({ flower, index = 0 }: { flower: Flower; index?: number }) {
@@ -34,14 +34,14 @@ export function FlowerCard({ flower, index = 0 }: { flower: Flower; index?: numb
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: (index % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}>
       <Link to={`/flower/${flower.slug}`} className="card card-hover block group">
-        <div className="relative aspect-[4/5] overflow-hidden bg-forest-100">
-          {imageUrl ? <img src={imageUrl} alt={getFlowerName(flower, lang)} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="w-full h-full flex items-center justify-center text-forest-300"><HeartIcon size={40} /></div>}
-          <div className="absolute top-3 end-3 bg-forest-950/40 backdrop-blur-sm rounded-full px-2.5 py-1.5"><LikeButton count={likeCount} liked={liked} onToggle={handleLike} size="sm" variant="light" /></div>
-          <div className="absolute inset-2 border border-ivory-200/20 rounded-lg pointer-events-none" />
+        <div className="relative aspect-[4/5] overflow-hidden bg-brand-100">
+          {imageUrl ? <img src={imageUrl} alt={getFlowerName(flower, lang)} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /> : <div className="w-full h-full flex items-center justify-center text-brand-300"><ProductIcon size={40} /></div>}
+          <div className="absolute top-3 end-3 bg-brand-950/40 backdrop-blur-sm rounded-full px-2.5 py-1.5"><LikeButton count={likeCount} liked={liked} onToggle={handleLike} size="sm" variant="light" /></div>
+          <div className="absolute inset-2 border border-cream-200/20 rounded-lg pointer-events-none" />
         </div>
         <div className="p-4">
-          <h3 className="font-serif text-lg text-forest-700 leading-tight mb-1 line-clamp-1">{getFlowerName(flower, lang)}</h3>
-          <p className="font-sans text-sm text-gold-500 tracking-wide">{formatPrice(flower.price)}</p>
+          <h3 className="font-serif text-lg text-espresso-900 leading-tight mb-1 line-clamp-1">{getFlowerName(flower, lang)}</h3>
+          <p className="font-sans text-sm text-saffron-500 font-medium tracking-wide">{formatPrice(flower.price)}</p>
         </div>
       </Link>
     </motion.div>

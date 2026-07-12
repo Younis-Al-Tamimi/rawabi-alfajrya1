@@ -5,31 +5,37 @@
 @layer base {
   *, *::before, *::after { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
   html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
-  body { @apply bg-ivory-200 text-forest-700 font-sans antialiased; overflow-x: hidden; width: 100%; margin: 0; padding: 0; position: relative; }
+  body { @apply bg-cream-200 text-espresso-900 font-sans antialiased; overflow-x: hidden; width: 100%; margin: 0; padding: 0; position: relative; }
   #root { width: 100%; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
   main { width: 100%; overflow-x: hidden; }
-  [dir="rtl"] body { @apply font-arabicSans; }
-  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { @apply font-arabicSerif; }
+  [dir="rtl"] body { @apply font-arabic; }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { @apply font-arabic; font-weight: 700; }
   h1, h2, h3, h4 { @apply font-serif; }
-  ::selection { @apply bg-gold-400/30 text-forest-800; }
+  ::selection { @apply bg-saffron-400/30 text-brand-900; }
   img { max-width: 100%; height: auto; display: block; }
 }
 
 @layer components {
-  .btn-primary { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-forest-600 text-ivory-200 font-sans text-sm tracking-wide rounded-full transition-all duration-300 hover:bg-forest-700 hover:shadow-forest active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed; }
-  .btn-secondary { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-transparent text-forest-700 border border-forest-300 font-sans text-sm tracking-wide rounded-full transition-all duration-300 hover:border-forest-600 hover:bg-forest-50 active:scale-[0.97]; }
-  .btn-gold { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-gold-400 text-forest-800 font-sans text-sm tracking-wide rounded-full transition-all duration-300 hover:bg-gold-500 hover:text-ivory-200 active:scale-[0.97]; }
-  .btn-ghost { @apply inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-forest-600 font-sans text-sm tracking-wide rounded-full transition-all duration-300 hover:bg-forest-50 active:scale-[0.97]; }
-  .input-field { @apply w-full px-3 sm:px-4 py-3 bg-ivory-50 border border-forest-200 rounded-xl text-forest-700 placeholder-forest-300 font-sans text-sm transition-all duration-200 focus:outline-none focus:border-forest-500 focus:ring-2 focus:ring-forest-500/20; }
-  .card { @apply bg-ivory-50 rounded-2xl shadow-forest-sm border border-forest-100/50 overflow-hidden transition-all duration-300; }
-  .card-hover { @apply hover:shadow-forest-lg hover:-translate-y-1; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-brand-gradient text-cream-50 font-sans text-sm font-medium tracking-wide rounded-full transition-all duration-300 hover:shadow-brand-lg active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-transparent text-brand-700 border border-brand-300 font-sans text-sm font-medium tracking-wide rounded-full transition-all duration-300 hover:border-brand-600 hover:bg-brand-50 active:scale-[0.97]; }
+  .btn-amber { @apply inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-amber-gradient text-espresso-900 font-sans text-sm font-semibold tracking-wide rounded-full transition-all duration-300 hover:shadow-amber-lg active:scale-[0.97]; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-brand-600 font-sans text-sm font-medium tracking-wide rounded-full transition-all duration-300 hover:bg-brand-50 active:scale-[0.97]; }
+  .input-field { @apply w-full px-3 sm:px-4 py-3 bg-cream-50 border border-brand-200 rounded-xl text-espresso-900 placeholder-espresso-300 font-sans text-sm transition-all duration-200 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20; }
+  .card { @apply bg-cream-50 rounded-2xl shadow-brand-sm border border-brand-100/50 overflow-hidden transition-all duration-300; }
+  .card-hover { @apply hover:shadow-brand-lg hover:-translate-y-1; }
+  .glass-card { @apply backdrop-blur-xl bg-cream-50/80 border border-cream-300/40 shadow-glass rounded-2xl; }
   .section-pad { @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28; }
   .container-narrow { @apply max-w-7xl mx-auto w-full; }
-  .skeleton { @apply bg-gradient-to-r from-forest-100 via-forest-50 to-forest-100 bg-[length:200%_100%] animate-shimmer; }
+  .skeleton { @apply bg-gradient-to-r from-brand-100 via-cream-100 to-brand-100 bg-[length:200%_100%] animate-shimmer; }
+  .badge-new { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-saffron-100 text-saffron-700 text-xs font-semibold; }
+  .badge-hidden { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand-100 text-brand-500 text-xs font-medium; }
+  .badge-visible { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-saffron-100 text-saffron-700 text-xs font-medium; }
 }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
+  .gradient-text { @apply bg-brand-gradient bg-clip-text text-transparent; }
+  .hover-lift { @apply transition-transform duration-300 hover:-translate-y-0.5; }
   .safe-top { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
   [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
@@ -38,11 +44,10 @@
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #f5f7f3; }
-::-webkit-scrollbar-thumb { background: #a8b59e; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #5a6d50; }
+::-webkit-scrollbar-track { background: #faf2e0; }
+::-webkit-scrollbar-thumb { background: #d05a37; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #ac3715; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
-
